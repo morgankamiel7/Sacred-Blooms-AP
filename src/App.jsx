@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 // THEME
 // ─────────────────────────────────────────────────────────────
 const T = {
-  bg:"#0B0806", bg2:"#130E0A",
-  surface:"rgba(210,180,140,0.055)", border:"rgba(210,180,140,0.10)",
-  cream:"#EDE0C8", creamSub:"rgba(237,224,200,0.52)", creamMute:"rgba(237,224,200,0.22)",
+  bg:"#FDF8F5", bg2:"#FAF3EE",
+  surface:"rgba(255,255,255,0.85)", border:"rgba(196,120,106,0.18)",
+  cream:"#3D2B22", creamSub:"rgba(61,43,34,0.7)", creamMute:"rgba(61,43,34,0.4)",
   rose:"#C4786A", roseDeep:"#9E5246",
-  gold:"#C9A46A", goldSoft:"#E2C48A",
-  sage:"#7A9E8A", lavender:"#A89CC8",
+  gold:"#B8884A", goldSoft:"#D4A96A",
+  sage:"#5C8A74", lavender:"#7B6FA0",
 };
 
 const CSS = `
@@ -17,10 +17,10 @@ const CSS = `
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:${T.bg};min-height:100vh;overscroll-behavior:none}
   ::-webkit-scrollbar{width:2px}
-  ::-webkit-scrollbar-thumb{background:rgba(201,164,106,0.18);border-radius:2px}
-  textarea,input,select{outline:none;font-family:'EB Garamond',serif;background:none}
+  ::-webkit-scrollbar-thumb{background:rgba(196,120,106,0.3);border-radius:2px}
+  textarea,input,select{outline:none;font-family:'EB Garamond',serif;background:none;color:${T.cream}}
   textarea::placeholder,input::placeholder{color:${T.creamMute}}
-  select option{background:#1C1410;color:${T.cream}}
+  select option{background:#FDF8F5;color:${T.cream}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
@@ -248,11 +248,11 @@ function scoreQuiz(answers) {
 const S = {
   page:   { minHeight:"100vh", background:T.bg, color:T.cream, fontFamily:"'EB Garamond',serif", fontSize:17, paddingBottom:90 },
   header: { padding:"36px 20px 0", textAlign:"center" },
-  title:  { fontFamily:"'Cinzel',serif", fontSize:13, letterSpacing:"0.28em", color:T.gold, textTransform:"uppercase", opacity:0.75 },
+  title:  { fontFamily:"'Cinzel',serif", fontSize:13, letterSpacing:"0.28em", color:T.rose, textTransform:"uppercase", opacity:0.85 },
   section:{ margin:"24px 18px 0" },
-  card:   { background:T.surface, border:`1px solid ${T.border}`, borderRadius:14, padding:"18px" },
+  card:   { background:"rgba(255,255,255,0.9)", border:`1px solid rgba(196,120,106,0.15)`, borderRadius:14, padding:"18px", boxShadow:"0 2px 16px rgba(196,120,106,0.07)" },
   label:  { fontFamily:"'Cinzel',serif", fontSize:11, letterSpacing:"0.22em", color:T.creamMute, textTransform:"uppercase", marginBottom:8, display:"block" },
-  input:  { width:"100%", background:"rgba(210,180,140,0.06)", border:`1px solid ${T.border}`, borderRadius:10, padding:"11px 14px", color:T.cream, fontSize:16, fontFamily:"'EB Garamond',serif" },
+  input:  { width:"100%", background:"rgba(253,248,245,0.8)", border:`1px solid rgba(196,120,106,0.2)`, borderRadius:10, padding:"11px 14px", color:T.cream, fontSize:16, fontFamily:"'EB Garamond',serif" },
   btn:    (c=T.gold)=>({ background:`linear-gradient(135deg,${c}22,${c}11)`, border:`1px solid ${c}55`, borderRadius:10, padding:"12px 22px", color:c, fontFamily:"'Cinzel',serif", fontSize:12, letterSpacing:"0.18em", cursor:"pointer", textTransform:"uppercase", display:"inline-flex", alignItems:"center", gap:8, transition:"all 0.2s" }),
   btnFull:(c=T.gold)=>({ ...S.btn(c), width:"100%", justifyContent:"center" }),
 };
@@ -274,7 +274,7 @@ const TABS = [
 ];
 function Nav({active,onSelect}) {
   return (
-    <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"rgba(11,8,6,0.97)",borderTop:`1px solid ${T.border}`,display:"flex",padding:"8px 0 env(safe-area-inset-bottom,8px)"}}>
+    <div style={{position:"fixed",bottom:0,left:0,right:0,zIndex:100,background:"rgba(253,248,245,0.97)",borderTop:`1px solid ${T.border}`,display:"flex",padding:"8px 0 env(safe-area-inset-bottom,8px)",boxShadow:"0 -4px 20px rgba(196,120,106,0.08)"}}>
       {TABS.map(t=>{
         const on=active===t.id;
         return (
